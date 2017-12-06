@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lele.mapper.UserMapper">
+
+<!-- <select id="selectBigType" resultType="bigtype">
+  select * from bigtype;
+</select>
+<select id="selectSmallType" resultType="smalltype" parameterType="int">
+select * from smalltype where bigid=#{id};
+</select>
+ <insert id="insertGoods" parameterType="goods">
+  
+  insert into goods values(null,#{name},#{btype},#{stype},#{price},#{reprice},#{number},#{miao});
+  </insert>
+  
+  <select id="selectAll" resultType="goods" parameterType="pagebean">
+  select * from goods limit #{pagenum},#{pagesize};
+   </select>
+   <select id="selectCount" resultType="int">
+  select count(*) from goods;
+   </select> -->
+  <select id="getAllUser" resultType="user" parameterType="pagebean">
+  select * from user limit #{pagenum},#{pagesize};
+  </select>
+  <insert id="saveuser" parameterType="user">
+  insert into user values(#{id},#{username},#{password},#{phonenumber});
+  </insert>
+  <delete id="removeUser" parameterType="UserVo">
+  delete from user where
+  <foreach collection="ids" open="id in(" close=")" separator="," item="id">
+  #{id}
+  </foreach>
+  
+  </delete>
+  <update id="updateUser" parameterType="user">
+  UPDATE USER SET 
+  username=#{username},password=#{password},phonenumber=#{phonenumber}
+   WHERE id=#{id};
+  </update>
+  
+</mapper>
